@@ -15,3 +15,6 @@ pass
 ### Development Instructions
 The Poetry development dependencies are installed by default when you run `poetry install`. If you are using pip you can install them from the `requirements_dev.txt` file.
 This project uses the pre-commit package to check commits. You can install this hooks from this project by running `pre-commit install`.
+
+### Project Design
+This repo is a mixture of this [Cookiecutter project template](https://github.com/acviana/python-project-template) and [last year's repo](https://github.com/acviana/advent-of-code-2020).
