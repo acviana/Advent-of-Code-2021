@@ -32,7 +32,7 @@ setup-day:
 
 setup-day-with-template:
 	cp -vn advent_of_code_2021/template_module.py advent_of_code_2021/day_$(day).py
-	cp -vn advent_of_code_2021/template_test.py test/day_$(day)_test.py
+	cp -vn advent_of_code_2021/template_test.py tests/day_$(day)_test.py
 	touch inputs/day_$(day)_input.txt
 	touch puzzles/day_$(day).md
 
