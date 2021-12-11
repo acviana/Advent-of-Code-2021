@@ -6,11 +6,17 @@ def load_data() -> List[List[str]]:
         return [item.strip().split(" ") for item in f.readlines()]
 
 
-def translate_instruction_part_1(input_instruction: List[str]) -> Dict:
-    instruction = {
-        "direction": input_instruction[0],
-        "magnitude": int(input_instruction[1]),
-    }
+def parse_instructions(data_list: List[List[str]]) -> List[Dict]:
+    return [
+        {
+            "direction": item[0],
+            "magnitude": int(item[1]),
+        }
+        for item in data_list
+    ]
+
+
+def translate_instruction_part_1(instruction: Dict) -> Dict[str, int]:
     if instruction["direction"] == "up":
         return {"position_change": 0, "depth_change": -1 * instruction["magnitude"]}
     elif instruction["direction"] == "down":
@@ -21,11 +27,7 @@ def translate_instruction_part_1(input_instruction: List[str]) -> Dict:
         assert False
 
 
-def translate_instruction_part_2(input_instruction: List[str]) -> Dict:
-    instruction = {
-        "direction": input_instruction[0],
-        "magnitude": int(input_instruction[1]),
-    }
+def translate_instruction_part_2(instruction: Dict) -> Dict[str, int]:
     if instruction["direction"] == "up":
         return {
             "position_change": 0,
@@ -48,7 +50,7 @@ def translate_instruction_part_2(input_instruction: List[str]) -> Dict:
         assert False
 
 
-def parse_data(data: List[List[str]]) -> Tuple[int, int]:
+def parse_data(data: List[Dict]) -> Tuple[int, int]:
     instruction_list = [translate_instruction_part_1(item) for item in data]
     return (
         sum([item["position_change"] for item in instruction_list]),
@@ -56,7 +58,7 @@ def parse_data(data: List[List[str]]) -> Tuple[int, int]:
     )
 
 
-def parse_data_2(data: List[List[str]]) -> Tuple[int, int]:
+def parse_data_2(data: List[Dict]) -> Tuple[int, int]:
     instruction_list = [translate_instruction_part_2(item) for item in data]
     coordinate_dict = {"position": 0, "depth": 0, "aim": 0}
     for instruction in instruction_list:
@@ -72,10 +74,10 @@ def parse_data_2(data: List[List[str]]) -> Tuple[int, int]:
 
 def main() -> None:
     data = load_data()
-    position = parse_data(data)
+    position = parse_data(parse_instructions(data))
     print(f"Position is {position}")
     print(f"Answer in {position[0] * position[1]}")
-    position = parse_data_2(data)
+    position = parse_data_2(parse_instructions(data))
     print(f"Position is {position}")
     print(f"Answer in {position[0] * position[1]}")
 

@@ -1,4 +1,4 @@
-from advent_of_code_2021.day_2 import parse_data, parse_data_2
+from advent_of_code_2021.day_2 import parse_data, parse_data_2, parse_instructions
 
 TEST_DATA = """forward 5
 down 5
@@ -6,7 +6,9 @@ forward 8
 up 3
 down 8
 forward 2"""
-TEST_DATA = [item.strip().split(" ") for item in TEST_DATA.split("\n")]
+TEST_DATA = parse_instructions(
+    [item.strip().split(" ") for item in TEST_DATA.split("\n")]
+)
 
 
 def test_parse_data():
