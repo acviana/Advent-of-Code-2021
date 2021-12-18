@@ -15,8 +15,8 @@ This project uses the pre-commit package to check commits. You can install this 
 
 A suggested workflow is documented in the `Makefile`
 
-```shell
-# Created the template module for the day
+```console
+# Created the template module
 $ make setup-day-with-template day=1
 cp -vn advent_of_code_2021/template_module.py advent_of_code_2021/day_1.py
 advent_of_code_2021/template_module.py -> advent_of_code_2021/day_1.py
@@ -25,7 +25,7 @@ advent_of_code_2021/template_test.py -> test/day_1_test.py
 touch inputs/day_1_input.txt
 touch puzzles/day_1.md
 
-# Run the day's code
+# Run the code
 $ make run day=1
 python advent_of_code_2021/day_1.py
 Length of data: 2000
@@ -36,7 +36,7 @@ Solution: 1390
 $ make pre-commit
 ...
 
-# Stage our work for commiting
+# Stage work
 make stage-day day=1
 git add advent_of_code_2021/day_1.py
 git add tests/day_1_test.py
