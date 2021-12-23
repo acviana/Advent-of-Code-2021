@@ -37,7 +37,7 @@ $ make pre-commit
 ...
 
 # Stage work
-make stage-day day=1
+$ make stage-day day=1
 git add advent_of_code_2021/day_1.py
 git add tests/day_1_test.py
 git add inputs/day_1_input.txt
