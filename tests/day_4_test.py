@@ -119,8 +119,15 @@ def test_board_unmarked_sum():
             break
 
 
-def test_run_game():
+def test_run_game_to_win():
     parsed_data = parse_data(TEST_DATA)
-    game_winner = run_game(parsed_data)
+    game_winner = run_game(parsed_data, play_to_win=True)
     assert game_winner["number"] == 24
     assert game_winner["unmarked_sum"] == 188
+
+
+def test_run_game_to_lose():
+    parsed_data = parse_data(TEST_DATA)
+    game_winner = run_game(parsed_data, play_to_win=False)
+    assert game_winner["number"] == 13
+    assert game_winner["unmarked_sum"] == 148

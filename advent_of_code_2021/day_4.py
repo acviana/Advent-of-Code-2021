@@ -78,20 +78,35 @@ class Board:
                     self.board[(column_index, row_index)]["picked"] = True
 
 
-def run_game(parsed_data: dict) -> dict:
+def run_game(parsed_data: dict, play_to_win: bool = True) -> dict:
     boards = [Board(item) for item in parsed_data["boards"]]
     for number in parsed_data["numbers"]:
         for board in boards:
             board.pick_number(number)
             if board.is_winner:
-                return {"number": number, "unmarked_sum": board.unmarked_sum}
+                if play_to_win:
+                    return {"number": number, "unmarked_sum": board.unmarked_sum}
+                else:
+                    if sum([not board.is_winner for board in boards]) == 0:
+                        return {"number": number, "unmarked_sum": board.unmarked_sum}
     assert False
 
 
 def main() -> None:
     data = load_data()
     parsed_data = parse_data(data)
-    game_winner = run_game(parsed_data)
+
+    # Part 1
+    print("Playing to win")
+    game_winner = run_game(parsed_data, play_to_win=True)
+    answer = game_winner["number"] * game_winner["unmarked_sum"]
+    print(
+        f'Answer is {game_winner["number"]} * {game_winner["unmarked_sum"]} = {answer}'
+    )
+
+    # Part 2
+    print("Playing to lose")
+    game_winner = run_game(parsed_data, play_to_win=False)
     answer = game_winner["number"] * game_winner["unmarked_sum"]
     print(
         f'Answer is {game_winner["number"]} * {game_winner["unmarked_sum"]} = {answer}'
