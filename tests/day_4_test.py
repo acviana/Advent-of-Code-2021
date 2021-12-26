@@ -88,15 +88,6 @@ def test_parse_data():
     assert result == EXPECTED_TEST_RESULT
 
 
-def test_board_init():
-    result = parse_data(TEST_DATA)
-    board = Board(parse_data(TEST_DATA)["boards"][0])
-    import pprint
-
-    pprint.pprint(result["boards"][0])
-    pprint.pprint(board.board)
-
-
 def test_board_pick_number():
     board = Board(parse_data(TEST_DATA)["boards"][0])
     assert board.board[(0, 0)]["picked"] is False

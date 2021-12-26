@@ -1,20 +1,17 @@
-from typing import List
-
-
-def load_data() -> List[str]:
+def load_data() -> list[str]:
     with open("inputs/day_4_input.txt") as f:
         return [item.strip() for item in f.readlines()]
 
 
-def parse_data(data: List[str]) -> dict:
-    output = {
+def parse_data(data: list[str]) -> dict:
+    output: dict[str, list] = {
         "numbers": [],
         "boards": [],
     }
 
     output["numbers"] = [int(item) for item in data[0].split(",")]
 
-    temp_board = []
+    temp_board: list = []
     for row in data[2:]:
         if row == "":
             output["boards"] += [temp_board]
@@ -31,7 +28,7 @@ class Board:
         self._input = input
         self._load_board()
 
-    def _load_board(self):
+    def _load_board(self) -> None:
         board = {}
         for row_index in range(0, 5):
             for column_index in range(0, 5):
